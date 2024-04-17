@@ -29,9 +29,9 @@ def setupInitialPositions(player, pieces, player_num, isBackRow):
     for piece in pieces:
         pos = '{}{}'.format(columns[i],row_num)
         if isBackRow:
-            img = 'img/{}{}.png'.format(images[i],player_num)
+            img = '../img/{}{}.png'.format(images[i],player_num)
         else:
-            img = 'img/pawn{}.png'.format(player_num)
+            img = '../img/pawn{}.png'.format(player_num)
         infoC = {'ipos': pos, 'cpos': pos, 'imgName':img, 'gObj':None}
         player[piece] = infoC
         i += 1
@@ -149,7 +149,7 @@ def drawTurn(board, sp, board_height, infoB):
     '''
     #load image to get width and height for centre point before moving to
     #final location
-    imgTurn = gr.Image(gr.Point(0, 0), 'img/king1.png')
+    imgTurn = gr.Image(gr.Point(0, 0), '../img/king1.png')
     img_x = sp[0] + imgTurn.getWidth() / 2
     img_y = sp[1] + board_height + infoB['edge'] / 2
     imgTurn.move(img_x, img_y)
@@ -285,7 +285,7 @@ def initializeBoard(board,infoB,boardDict,pieces,imgTurn):
             board,player[piece]['gObj'] = drawPiece(board, boardDict,
                                                     player[piece])
     imgTurn.undraw()
-    imgTurn = gr.Image(imgTurn.getAnchor(), 'img/king1.png')
+    imgTurn = gr.Image(imgTurn.getAnchor(), '../img/king1.png')
     imgTurn.draw(board)
     return(board, pieces, p1_turn, imgTurn)
 
@@ -376,7 +376,7 @@ def promote(board,iplayer,move,pieces,piece_name,boardDict):
             raise SystemExit
         if click.getX() > boardDict['C5']['up'].getX() and click.getX() < boardDict['C5']['lp'].getX() \
         and click.getY() > boardDict['C5']['up'].getY() and click.getY() < boardDict['C5']['lp'].getY():
-            name = 'img/rook{}.png'.format(iplayer+1)
+            name = '../img/rook{}.png'.format(iplayer+1)
             pos = boardDict[pieces[iplayer][piece_name]['cpos']]['cp']
             image = gr.Image(pos,name)
             pieces[iplayer][piece_name]['gObj'].undraw()
@@ -390,7 +390,7 @@ def promote(board,iplayer,move,pieces,piece_name,boardDict):
             break
         elif click.getX() > boardDict['D5']['up'].getX() and click.getX() < boardDict['D5']['lp'].getX() \
         and click.getY() > boardDict['D5']['up'].getY() and click.getY() < boardDict['D5']['lp'].getY():
-            name = 'img/knight{}.png'.format(iplayer+1)
+            name = '../img/knight{}.png'.format(iplayer+1)
             pos = boardDict[pieces[iplayer][piece_name]['cpos']]['cp']
             image = gr.Image(pos,name)
             pieces[iplayer][piece_name]['gObj'].undraw()
@@ -404,7 +404,7 @@ def promote(board,iplayer,move,pieces,piece_name,boardDict):
             break
         elif click.getX() > boardDict['E5']['up'].getX() and click.getX() < boardDict['E5']['lp'].getX() \
         and click.getY() > boardDict['E5']['up'].getY() and click.getY() < boardDict['E5']['lp'].getY():
-            name = 'img/bishop{}.png'.format(iplayer+1)
+            name = '../img/bishop{}.png'.format(iplayer+1)
             pos = boardDict[pieces[iplayer][piece_name]['cpos']]['cp']
             image = gr.Image(pos,name)
             pieces[iplayer][piece_name]['gObj'].undraw()
@@ -418,7 +418,7 @@ def promote(board,iplayer,move,pieces,piece_name,boardDict):
             break
         elif click.getX() > boardDict['F5']['up'].getX() and click.getX() < boardDict['F5']['lp'].getX() \
         and click.getY() > boardDict['F5']['up'].getY() and click.getY() < boardDict['F5']['lp'].getY():
-            name = 'img/queen{}.png'.format(iplayer+1)
+            name = '../img/queen{}.png'.format(iplayer+1)
             pos = boardDict[pieces[iplayer][piece_name]['cpos']]['cp']
             image = gr.Image(pos,name)
             pieces[iplayer][piece_name]['gObj'].undraw()
@@ -468,10 +468,10 @@ def updateTurnImage(imgTurn,board,p1_turn):
     img_point = imgTurn.getAnchor()
     imgTurn.undraw()
     if p1_turn:
-        imgTurn = gr.Image(img_point, 'img/king1.png')
+        imgTurn = gr.Image(img_point, '../img/king1.png')
         imgTurn.draw(board)
     else:
-        imgTurn = gr.Image(img_point, 'img/king2.png')
+        imgTurn = gr.Image(img_point, '../img/king2.png')
         imgTurn.draw(board)
     return(imgTurn,board)
 
@@ -523,7 +523,7 @@ def mainGameM3():
     '''
     # first pulls width of a piece image, which is used as a single square size
     # and then uses that to determine the graphics window width
-    init_board_width = gr.Image(gr.Point(0, 0), 'img/king1.png')
+    init_board_width = gr.Image(gr.Point(0, 0), '../img/king1.png')
     board_width = init_board_width.getWidth() * 8
     infoB = {'full': board_width + 50, 'board': board_width, 'edge': 100}
     colors = ['white', 'grey']
